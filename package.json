@@ -32,6 +32,7 @@
     "fetch-images": "0.0.1",
     "gh-pages": "^3.2.3",
     "handlebars": "^4.7.7",
+    "lodash.throttle": "^4.1.1",
     "notiflix": "^3.0.1"
   }
 }

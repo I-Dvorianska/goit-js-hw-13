@@ -30,6 +30,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "fetch-images": "0.0.1",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "notiflix": "^3.0.1"
   }
 }

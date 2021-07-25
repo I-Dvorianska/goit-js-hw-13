@@ -9,6 +9,6 @@ export default function fetchImages(searchEl) {
       `${BASE_URL}?key=${PIXABAY_KEY}&q=${searchEl}&image_type=photo&orientation=horizontal&safesearch=true`,
     )
     .then(response => {
-      return response;
+      return response.data.hits;
     });
 }

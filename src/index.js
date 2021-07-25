@@ -11,7 +11,7 @@ const loadMoreBtn = document.querySelector('.load-more');
 const imagesApiService = new ImagesApiService();
 
 searchForm.addEventListener('submit', throttle(onSearch, 500));
-loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.addEventListener('click', onLoad);
 
 function onSearch(e) {
   e.preventDefault();
@@ -23,15 +23,14 @@ function onSearch(e) {
     clearMarkup();
     return;
   }
-
-  imagesApiService.resetPage();
-  clearMarkup();
-  onLoad();
-  removeClass();
+  imgService();
 }
 
-function onLoadMore() {
-  onLoad();
+async function imgService() {
+  imagesApiService.resetPage();
+  clearMarkup();
+  const feched = await onLoad();
+  const showBtn = removeClass();
 }
 
 async function onLoad() {
@@ -47,11 +46,17 @@ async function onLoad() {
 
 function cardsMarkup(image) {
   console.log(image);
-  if (image.length === 0) {
+  if (image.hits.length === 0) {
     noMatch();
   }
-  const markup = imageCard(image);
+  console.log(image.totalHits);
+  const markup = imageCard(image.hits);
   gallery.insertAdjacentHTML('beforeend', markup);
+
+  if (image.totalHits === gallery.childElementCount) {
+    Notify.info("We're sorry, but you've reached the end of search results.");
+    addClass();
+  }
 }
 
 function clearMarkup() {

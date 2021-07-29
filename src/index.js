@@ -3,6 +3,8 @@ import { Notify } from 'notiflix';
 import imageCard from './templates/image-card.hbs';
 import ImagesApiService from './js/images-service';
 import throttle from 'lodash.throttle';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -20,7 +22,6 @@ function onSearch(e) {
 
   if (imagesApiService.searchQuery === '') {
     noMatch();
-    clearMarkup();
     return;
   }
   imgService();
@@ -49,7 +50,7 @@ function cardsMarkup(image) {
   if (image.hits.length === 0) {
     noMatch();
   }
-  console.log(image.totalHits);
+
   const markup = imageCard(image.hits);
   gallery.insertAdjacentHTML('beforeend', markup);
 

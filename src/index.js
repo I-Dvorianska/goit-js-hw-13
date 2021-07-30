@@ -22,6 +22,7 @@ function onSearch(e) {
 
   if (imagesApiService.searchQuery === '') {
     noMatch();
+    clearMarkup();
     return;
   }
   imgService();
@@ -39,6 +40,7 @@ async function onLoad() {
     const response = await imagesApiService.fetchImages();
     const markup = cardsMarkup(response);
     imagesApiService.page += 1;
+    largePhoto.refresh();
     return markup;
   } catch (error) {
     console.log(error);
@@ -76,4 +78,4 @@ function addClass() {
   loadMoreBtn.classList.add('is-hidden');
 }
 
-const largePhoto = new SimpleLightbox('.photo-card a', {});
+let largePhoto = new SimpleLightbox('.photo-card_thumb a', {});

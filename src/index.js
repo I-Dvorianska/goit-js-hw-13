@@ -75,3 +75,5 @@ function removeClass() {
 function addClass() {
   loadMoreBtn.classList.add('is-hidden');
 }
+
+const largePhoto = new SimpleLightbox('.photo-card a', {});

@@ -22,8 +22,10 @@
   padding: 8px;
 }
 
-.search-form > button:hover {
+.search-form > button:hover,
+.load-more:hover {
   color: white;
+  cursor: pointer;
 }
 
 .load-more {

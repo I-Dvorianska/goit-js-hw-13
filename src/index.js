@@ -43,12 +43,11 @@ async function onLoad() {
     largePhoto.refresh();
     return markup;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 
 function cardsMarkup(image) {
-  console.log(image);
   if (image.hits.length === 0) {
     noMatch();
   }

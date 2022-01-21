@@ -1,4 +1,4 @@
-import './sass/main.scss';
+import '../css/main.min.css';
 import { Notify } from 'notiflix';
 import imageCard from './templates/image-card.hbs';
 import ImagesApiService from './js/images-service';
@@ -32,12 +32,14 @@ async function imgService() {
   imagesApiService.resetPage();
   clearMarkup();
   const feched = await onLoad();
-  const showBtn = removeClass();
 }
 
 async function onLoad() {
   try {
     const response = await imagesApiService.fetchImages();
+    if (response.totalHits !== 0) {
+      removeClass();
+    }
     const markup = cardsMarkup(response);
     imagesApiService.page += 1;
     largePhoto.refresh();
@@ -56,8 +58,10 @@ function cardsMarkup(image) {
   gallery.insertAdjacentHTML('beforeend', markup);
 
   if (image.totalHits === gallery.childElementCount) {
-    Notify.info("We're sorry, but you've reached the end of search results.");
     addClass();
+  }
+  if (image.totalHits === gallery.childElementCount && image.hits.length !== 0) {
+    Notify.info("We're sorry, but you've reached the end of search results.");
   }
 }
 

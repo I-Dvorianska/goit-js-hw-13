@@ -1,4 +1,4 @@
-import '../css/main.min.css';
+import './sass/main.scss';
 import { Notify } from 'notiflix';
 import imageCard from './templates/image-card.hbs';
 import ImagesApiService from './js/images-service';
